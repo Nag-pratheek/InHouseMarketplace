@@ -1,5 +1,9 @@
 package com.cg.market.entites;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,62 +26,17 @@ public class Employee {
 	@Column(name="location")
 	private String location;
 	@OneToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
+				+ ", user=" + user + "]";
+	}
 	public Employee() {
-	}	
-	
-	public int getEmpId() {
-		return empId;
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-
-	public void setEmpId(int empId) {
-		this.empId = empId;
-	}
-
-
-	public String getEmpName() {
-		return empName;
-	}
-
-
-	public void setEmpName(String empName) {
-		this.empName = empName;
-	}
-
-
-	public String getDeptName() {
-		return deptName;
-	}
-
-
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-
-
-	public String getLocation() {
-		return location;
-	}
-
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
 	public Employee(int empId, String empName, String deptName, String location, User user) {
 		super();
 		this.empId = empId;
@@ -86,14 +45,52 @@ public class Employee {
 		this.location = location;
 		this.user = user;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
-				+ ", user=" + user + "]";
+	
+	public Employee(String empName, String deptName, String location) {
+		super();
+		this.empName = empName;
+		this.deptName = deptName;
+		this.location = location;
 	}
-
-
-
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Employee(String empName, String deptName, String location, User user) {
+		super();
+		this.empName = empName;
+		this.deptName = deptName;
+		this.location = location;
+		this.user = user;
+	}
+	
+	
 }
+	
+	

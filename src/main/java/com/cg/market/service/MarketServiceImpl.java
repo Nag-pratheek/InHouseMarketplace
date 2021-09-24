@@ -22,5 +22,11 @@ public class MarketServiceImpl implements MarketService{
 		System.out.println("employee:"+emp);
 		return emp;
 	}
+	@Override
+	public Employee register(Employee emp) {
+		emp = dao.save(emp);
+		System.out.println("Returning saved student: "+ emp);
+		return emp;
+	}
 
 }

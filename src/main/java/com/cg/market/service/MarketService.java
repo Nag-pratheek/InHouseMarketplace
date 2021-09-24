@@ -6,4 +6,6 @@ public interface MarketService {
 
 	Employee findById(Integer empId);
 
+	Employee register(Employee emp);
+
 }
