@@ -6,15 +6,14 @@ import com.cg.market.entites.Product;
 
 public class CreateRequirementRequest {
 
-	private int reqId;
+	private Integer reqId;
 	private boolean isFulfilled;
 	private LocalDate fulfilledOn;
 	private Product prod;
 	public CreateRequirementRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public CreateRequirementRequest(int reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
+	public CreateRequirementRequest(Integer reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
 		super();
 		this.reqId = reqId;
 		this.isFulfilled = isFulfilled;
@@ -26,10 +25,10 @@ public class CreateRequirementRequest {
 		return "CreateRequirementRequest [reqId=" + reqId + ", isFulfilled=" + isFulfilled + ", fulfilledOn="
 				+ fulfilledOn + ", prod=" + prod + "]";
 	}
-	public int getReqId() {
+	public Integer getReqId() {
 		return reqId;
 	}
-	public void setReqId(int reqId) {
+	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
 	public boolean isFulfilled() {

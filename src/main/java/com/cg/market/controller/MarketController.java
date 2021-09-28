@@ -184,7 +184,7 @@ public class MarketController {
 		Proposal prop = new Proposal(updateData.getPropId(), updateData.getProposal(), updateData.getAmount(),
 				updateData.getProposalDate(), updateData.isAccepted(), updateData.getEmp(), updateData.getProd());
 		System.out.println("Proposal updated:" + prop);
-		prop = mService.register(prop);
+		prop = mService.update(prop);
 		ProposalDetails details = propUtil.toDetails(prop);
 		return details;
 	}
@@ -211,7 +211,7 @@ public class MarketController {
 		System.out.println("update data: " + updateData);
 		Offer off = new Offer(updateData.getOfferId(),updateData.isAvailable(),updateData.getAvailableUpto() , updateData.getProd());
 		System.out.println("Offer updated:" + off);
-		off = mService.register(off);
+		off = mService.update(off);
 		OfferDetails details = offUtil.toDetails(off);
 		return details;
 	}
@@ -247,7 +247,7 @@ public class MarketController {
 		System.out.println("update data: " + updateData);
 		Requirement requ = new Requirement(updateData.getReqId(), updateData.isFulfilled(), updateData.getFulfilledOn(), updateData.getProd());
 		System.out.println("Requirement updated:" + requ);
-		requ = mService.register(requ);
+		requ = mService.update(requ);
 		RequirementDetails details = reqUtil.toDetails(requ);
 		return details;
 	}

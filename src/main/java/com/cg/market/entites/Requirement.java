@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Requirement {
 	@Id
 	@GeneratedValue
-	private int reqId;
+	private Integer reqId;
 	@Column(name= "isFulfilled")
 	private boolean isFulfilled;
 	@Column(name= "fulfilledOn")
@@ -28,7 +28,7 @@ public class Requirement {
 		super();
 	}
 
-	public Requirement(int reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
+	public Requirement(Integer reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
 		super();
 		this.reqId = reqId;
 		this.isFulfilled = isFulfilled;
@@ -42,11 +42,11 @@ public class Requirement {
 				+ ", prod=" + prod + "]";
 	}
 
-	public int getReqId() {
+	public Integer getReqId() {
 		return reqId;
 	}
 
-	public void setReqId(int reqId) {
+	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
 

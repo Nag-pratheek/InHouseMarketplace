@@ -1,28 +1,25 @@
 package com.cg.market.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import com.cg.market.entites.Product;
-import com.cg.market.entites.Proposal;
 
 public class CreateOfferRequest {
-	private int offerId;
+	private Integer offerId;
 	private boolean isAvailable;
 	private LocalDate availableUpto;
 	private Product prod;
 	public CreateOfferRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public CreateOfferRequest(int offerId, boolean isAvailable, LocalDate availableUpto) {
+	public CreateOfferRequest(Integer offerId, boolean isAvailable, LocalDate availableUpto) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
 		this.availableUpto = availableUpto;
 	}
 	
-	public CreateOfferRequest(int offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
+	public CreateOfferRequest(Integer offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
@@ -34,10 +31,10 @@ public class CreateOfferRequest {
 		return "CreateOfferRequest [offerId=" + offerId + ", isAvailable=" + isAvailable + ", availableUpto="
 				+ availableUpto + ", prod=" + prod + "]";
 	}
-	public int getOfferId() {
+	public Integer getOfferId() {
 		return offerId;
 	}
-	public void setOfferId(int offerId) {
+	public void setOfferId(Integer offerId) {
 		this.offerId = offerId;
 	}
 	public boolean isAvailable() {

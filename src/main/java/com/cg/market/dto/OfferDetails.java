@@ -5,21 +5,21 @@ import java.time.LocalDate;
 import com.cg.market.entites.Product;
 
 public class OfferDetails {
-	private int offerId;
+	private Integer offerId;
 	private boolean isAvailable;
 	private LocalDate availableUpto;
 	private Product prod;
 	public OfferDetails() {
 		super();
 	}
-	public OfferDetails(int offerId, boolean isAvailable, LocalDate availableUpto) {
+	public OfferDetails(Integer offerId, boolean isAvailable, LocalDate availableUpto) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
 		this.availableUpto = availableUpto;
 	}
 	
-	public OfferDetails(int offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
+	public OfferDetails(Integer offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
@@ -31,10 +31,10 @@ public class OfferDetails {
 		return "OfferDetails [offerId=" + offerId + ", isAvailable=" + isAvailable + ", availableUpto=" + availableUpto
 				+ ", prod=" + prod + "]";
 	}
-	public int getOfferId() {
+	public Integer getOfferId() {
 		return offerId;
 	}
-	public void setOfferId(int offerId) {
+	public void setOfferId(Integer offerId) {
 		this.offerId = offerId;
 	}
 	public boolean isAvailable() {

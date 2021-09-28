@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Proposal {
 	@Id
 	@GeneratedValue
-	private int propId;
+	private Integer propId;
 	@Column(name="proposal")
 	private String proposal;
 	@Column(name="amount")
@@ -29,7 +29,7 @@ public class Proposal {
 	@ManyToOne
 	@JoinColumn(name="prod_Id")
 	private Product prod;
-	public Proposal(int propId, String proposal, double amount, LocalDate proposalDate, boolean isAccepted,
+	public Proposal(Integer propId, String proposal, double amount, LocalDate proposalDate, boolean isAccepted,
 			Employee emp, Product prod) {
 		super();
 		this.propId = propId;
@@ -58,10 +58,10 @@ public class Proposal {
 		return "Proposal [propId=" + propId + ", proposal=" + proposal + ", amount=" + amount + ", proposalDate="
 				+ proposalDate + ", isAccepted=" + isAccepted + ", emp=" + emp + ", prod=" + prod + "]";
 	}
-	public int getPropId() {
+	public Integer getPropId() {
 		return propId;
 	}
-	public void setPropId(int propId) {
+	public void setPropId(Integer propId) {
 		this.propId = propId;
 	}
 	public String getProposal() {

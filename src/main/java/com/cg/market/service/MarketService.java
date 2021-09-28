@@ -44,4 +44,10 @@ public interface MarketService {
 
 	Requirement deleteById4(Integer requId);
 
+	Proposal update(Proposal prop);
+
+	Offer update(Offer off);
+
+	Requirement update(Requirement requ);
+
 }

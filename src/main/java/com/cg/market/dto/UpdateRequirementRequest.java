@@ -5,14 +5,14 @@ import java.time.LocalDate;
 import com.cg.market.entites.Product;
 
 public class UpdateRequirementRequest {
-	private int reqId;
+	private Integer reqId;
 	private boolean isFulfilled;
 	private LocalDate fulfilledOn;
 	private Product prod;
 	public UpdateRequirementRequest() {
 		super();
 	}
-	public UpdateRequirementRequest(int reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
+	public UpdateRequirementRequest(Integer reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
 		super();
 		this.reqId = reqId;
 		this.isFulfilled = isFulfilled;
@@ -24,10 +24,10 @@ public class UpdateRequirementRequest {
 		return "UpdateRequirementRequest [reqId=" + reqId + ", isFulfilled=" + isFulfilled + ", fulfilledOn="
 				+ fulfilledOn + ", prod=" + prod + "]";
 	}
-	public int getReqId() {
+	public Integer getReqId() {
 		return reqId;
 	}
-	public void setReqId(int reqId) {
+	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
 	public boolean isFulfilled() {

@@ -6,7 +6,7 @@ import com.cg.market.entites.Employee;
 
 public class ProductDetails {
 	
-	private int prodId;
+	private Integer prodId;
 	private String title;
 	private String description;
 	private String category;
@@ -16,7 +16,7 @@ public class ProductDetails {
 	public ProductDetails() {
 		super();
 	}
-	public ProductDetails(int prodId, String title, String description, String category, double price, LocalDate date) {
+	public ProductDetails(Integer prodId, String title, String description, String category, double price, LocalDate date) {
 		super();
 		this.prodId = prodId;
 		this.title = title;
@@ -26,7 +26,7 @@ public class ProductDetails {
 		this.date = date;
 	}
 	
-	public ProductDetails(int prodId, String title, String description, String category, double price, LocalDate date,
+	public ProductDetails(Integer prodId, String title, String description, String category, double price, LocalDate date,
 			Employee emp) {
 		super();
 		this.prodId = prodId;
@@ -43,10 +43,10 @@ public class ProductDetails {
 		return "ProductDetails [prodId=" + prodId + ", title=" + title + ", description=" + description + ", category="
 				+ category + ", price=" + price + ", date=" + date + ", emp=" + emp + "]";
 	}
-	public int getProdId() {
+	public Integer getProdId() {
 		return prodId;
 	}
-	public void setProdId(int prodId) {
+	public void setProdId(Integer prodId) {
 		this.prodId = prodId;
 	}
 	public String getTitle() {

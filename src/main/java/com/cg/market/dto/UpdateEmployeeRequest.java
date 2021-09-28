@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UpdateEmployeeRequest {
-	private int empId;
+	private Integer empId;
 	@NotBlank @Size(min =2 , max = 20)
 	private String empName;
 	@NotBlank @Size(min =2 , max = 20)
@@ -22,7 +22,6 @@ public class UpdateEmployeeRequest {
 
 	public UpdateEmployeeRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -54,11 +53,11 @@ public class UpdateEmployeeRequest {
 		this.location = location;
 	}
 
-	public int getEmpId() {
+	public Integer getEmpId() {
 		return empId;
 	}
 
-	public void setEmpId(int empId) {
+	public void setEmpId(Integer empId) {
 		this.empId = empId;
 	}
 

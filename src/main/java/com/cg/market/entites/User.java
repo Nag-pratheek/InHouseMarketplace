@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class User {
 @Id
 	@Column(name="userid")
-	private int userId;
+	private Integer userId;
 	@Column(name="password")
 	private String password;
 	
@@ -22,7 +22,7 @@ public class User {
 	}
 
 
-	public User(int userId, String password) {
+	public User(Integer userId, String password) {
 		super();
 		this.userId = userId;
 		this.password = password;
@@ -31,16 +31,16 @@ public class User {
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

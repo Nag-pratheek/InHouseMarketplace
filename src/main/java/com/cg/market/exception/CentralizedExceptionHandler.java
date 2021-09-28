@@ -44,4 +44,34 @@ public class CentralizedExceptionHandler {
 		e.printStackTrace();
 		return e.getMessage();
 	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(EmployeeAlreadyExistsException.class)
+	public String handleEmployeeExists(EmployeeAlreadyExistsException e) {
+		return e.getMessage();
+	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(ProposalAlreadyExistsException.class)
+	public String handleProposalExists(ProposalAlreadyExistsException e) {
+		return e.getMessage();
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(ProductAlreadyExistsException.class)
+	public String handleProductExists(ProductAlreadyExistsException e) {
+		return e.getMessage();
+	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(OfferAlreadyExistsException.class)
+	public String handleOfferExists(OfferAlreadyExistsException e) {
+		return e.getMessage();
+	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(RequirementAlreadyExistsException.class)
+	public String handleRequirementExists(RequirementAlreadyExistsException e) {
+		return e.getMessage();
+	}
 }

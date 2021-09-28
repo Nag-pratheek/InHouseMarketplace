@@ -5,14 +5,14 @@ import java.time.LocalDate;
 import com.cg.market.entites.Product;
 
 public class UpdateOfferRequest {
-	private int offerId;
+	private Integer offerId;
 	private boolean isAvailable;
 	private LocalDate availableUpto;
 	private Product prod;
 	public UpdateOfferRequest() {
 		super();
 	}
-	public UpdateOfferRequest(int offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
+	public UpdateOfferRequest(Integer offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
@@ -24,10 +24,10 @@ public class UpdateOfferRequest {
 		return "UpdateOfferRequest [offerId=" + offerId + ", isAvailable=" + isAvailable + ", availableUpto="
 				+ availableUpto + ", prod=" + prod + "]";
 	}
-	public int getOfferId() {
+	public Integer getOfferId() {
 		return offerId;
 	}
-	public void setOfferId(int offerId) {
+	public void setOfferId(Integer offerId) {
 		this.offerId = offerId;
 	}
 	public boolean isAvailable() {

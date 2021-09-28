@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Employee {
 	@Id
 	@GeneratedValue
-	private int empId;
+	private Integer empId;
 	@Column(name="empname")
 	private String empName;
 	@Column(name="deptname")
@@ -32,7 +32,9 @@ public class Employee {
 	public Employee() {
 		super();
 	}
-	public Employee(int empId, String empName, String deptName, String location, User user) {
+	
+	
+	public Employee(Integer empId, String empName, String deptName, String location, User user) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
@@ -40,7 +42,6 @@ public class Employee {
 		this.location = location;
 		this.user = user;
 	}
-	
 	public Employee(String empName, String deptName, String location) {
 		super();
 		this.empName = empName;
@@ -48,17 +49,19 @@ public class Employee {
 		this.location = location;
 	}
 	
-	public Employee(int empId, String empName, String deptName, String location) {
+	
+	public Employee(Integer empId, String empName, String deptName, String location) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
 		this.deptName = deptName;
 		this.location = location;
 	}
-	public int getEmpId() {
+	
+	public Integer getEmpId() {
 		return empId;
 	}
-	public void setEmpId(int empId) {
+	public void setEmpId(Integer empId) {
 		this.empId = empId;
 	}
 	public String getEmpName() {

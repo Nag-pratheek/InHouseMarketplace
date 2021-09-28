@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Offer {
 	@Id
 	@GeneratedValue
-	private int offerId;
+	private Integer offerId;
 	@Column(name = "isavailable")
 	private boolean isAvailable;
 	@Column(name = "availableupto")
@@ -27,7 +27,7 @@ public class Offer {
 		super();
 	}
 	
-	public Offer(int offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
+	public Offer(Integer offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
@@ -35,7 +35,7 @@ public class Offer {
 		this.prod = prod;
 	}
 
-	public Offer(int offerId, boolean isAvailable, LocalDate availableUpto) {
+	public Offer(Integer offerId, boolean isAvailable, LocalDate availableUpto) {
 		super();
 		this.offerId = offerId;
 		this.isAvailable = isAvailable;
@@ -48,11 +48,11 @@ public class Offer {
 				+ ", prod=" + prod + "]";
 	}
 
-	public int getOfferId() {
+	public Integer getOfferId() {
 		return offerId;
 	}
 
-	public void setOfferId(int offerId) {
+	public void setOfferId(Integer offerId) {
 		this.offerId = offerId;
 	}
 

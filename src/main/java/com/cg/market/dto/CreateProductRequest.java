@@ -8,11 +8,8 @@ import javax.validation.constraints.Size;
 import com.cg.market.entites.Employee;
 
 public class CreateProductRequest {
-	//@NotBlank @Size(min = 2 ,max = 20 )
 	private String title;
-	//@NotBlank @Size(min = 2 , max = 20)
 	private String decription;
-	//@NotBlank @Size(min = 2,max = 20)
 	private String category;
 	private double price;
 	private LocalDate date;

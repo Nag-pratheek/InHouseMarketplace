@@ -7,7 +7,7 @@ import com.cg.market.entites.Product;
 
 public class UpdateProposalRequest {
 
-	private int propId;
+	private Integer propId;
 	private String proposal;
 	private double amount;
 	private LocalDate proposalDate;
@@ -17,7 +17,7 @@ public class UpdateProposalRequest {
 	public UpdateProposalRequest() {
 		super();
 	}
-	public UpdateProposalRequest(int propId, String proposal, double amount, LocalDate proposalDate, boolean isAccepted,
+	public UpdateProposalRequest(Integer propId, String proposal, double amount, LocalDate proposalDate, boolean isAccepted,
 			Employee emp, Product prod) {
 		super();
 		this.propId = propId;
@@ -34,10 +34,10 @@ public class UpdateProposalRequest {
 				+ ", proposalDate=" + proposalDate + ", isAccepted=" + isAccepted + ", emp=" + emp + ", prod=" + prod
 				+ "]";
 	}
-	public int getPropId() {
+	public Integer getPropId() {
 		return propId;
 	}
-	public void setPropId(int propId) {
+	public void setPropId(Integer propId) {
 		this.propId = propId;
 	}
 	public String getProposal() {

@@ -7,7 +7,7 @@ import com.cg.market.entites.Product;
 
 public class ProposalDetails {
 
-	private int propId;
+	private Integer propId;
 	private String proposal;
 	private double amount;
 	private LocalDate proposalDate;
@@ -18,7 +18,7 @@ public class ProposalDetails {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ProposalDetails(int propId, String proposal, double amount, LocalDate proposalDate, boolean isAccepted,
+	public ProposalDetails(Integer propId, String proposal, double amount, LocalDate proposalDate, boolean isAccepted,
 			Employee emp, Product prod) {
 		super();
 		this.propId = propId;
@@ -34,10 +34,10 @@ public class ProposalDetails {
 		return "ProposalDetails [propId=" + propId + ", proposal=" + proposal + ", amount=" + amount + ", proposalDate="
 				+ proposalDate + ", isAccepted=" + isAccepted + ", emp=" + emp + ", prod=" + prod + "]";
 	}
-	public int getPropId() {
+	public Integer getPropId() {
 		return propId;
 	}
-	public void setPropId(int propId) {
+	public void setPropId(Integer propId) {
 		this.propId = propId;
 	}
 	public String getProposal() {
