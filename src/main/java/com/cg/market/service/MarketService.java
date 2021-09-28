@@ -6,6 +6,7 @@ import com.cg.market.entites.Employee;
 import com.cg.market.entites.Offer;
 import com.cg.market.entites.Product;
 import com.cg.market.entites.Proposal;
+import com.cg.market.entites.Requirement;
 
 public interface MarketService {
 
@@ -36,5 +37,11 @@ public interface MarketService {
 	Offer deleteById3(Integer offId);
 
 	List<Offer> findAllOffer();
+
+	Requirement register(Requirement requ);
+
+	List<Requirement> findAllRequirement();
+
+	Requirement deleteById4(Integer requId);
 
 }

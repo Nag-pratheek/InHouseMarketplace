@@ -1,80 +1,55 @@
-package com.cg.market.entites;
+package com.cg.market.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.cg.market.entites.Product;
 
-@Entity
-@Table(name="Requirement")
-public class Requirement {
-	@Id
-	@GeneratedValue
+public class CreateRequirementRequest {
+
 	private int reqId;
-	@Column(name= "isFulfilled")
 	private boolean isFulfilled;
-	@Column(name= "fulfilledOn")
 	private LocalDate fulfilledOn;
-	@OneToOne
-	@JoinColumn(name="prodId")
 	private Product prod;
-	
-	public Requirement() {
+	public CreateRequirementRequest() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public Requirement(int reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
+	public CreateRequirementRequest(int reqId, boolean isFulfilled, LocalDate fulfilledOn, Product prod) {
 		super();
 		this.reqId = reqId;
 		this.isFulfilled = isFulfilled;
 		this.fulfilledOn = fulfilledOn;
 		this.prod = prod;
 	}
-
 	@Override
 	public String toString() {
-		return "Requirement [reqId=" + reqId + ", isFulfilled=" + isFulfilled + ", fulfilledOn=" + fulfilledOn
-				+ ", prod=" + prod + "]";
+		return "CreateRequirementRequest [reqId=" + reqId + ", isFulfilled=" + isFulfilled + ", fulfilledOn="
+				+ fulfilledOn + ", prod=" + prod + "]";
 	}
-
 	public int getReqId() {
 		return reqId;
 	}
-
 	public void setReqId(int reqId) {
 		this.reqId = reqId;
 	}
-
 	public boolean isFulfilled() {
 		return isFulfilled;
 	}
-
 	public void setFulfilled(boolean isFulfilled) {
 		this.isFulfilled = isFulfilled;
 	}
-
 	public LocalDate getFulfilledOn() {
 		return fulfilledOn;
 	}
-
 	public void setFulfilledOn(LocalDate fulfilledOn) {
 		this.fulfilledOn = fulfilledOn;
 	}
-
 	public Product getProd() {
 		return prod;
 	}
-
 	public void setProd(Product prod) {
 		this.prod = prod;
 	}
-
 	
-
 	
 }

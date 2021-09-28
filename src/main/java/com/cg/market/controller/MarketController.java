@@ -21,23 +21,28 @@ import com.cg.market.dto.CreateEmployeeRequest;
 import com.cg.market.dto.CreateOfferRequest;
 import com.cg.market.dto.CreateProductRequest;
 import com.cg.market.dto.CreateProposalRequest;
+import com.cg.market.dto.CreateRequirementRequest;
 import com.cg.market.dto.EmployeeDetails;
 import com.cg.market.dto.OfferDetails;
 import com.cg.market.dto.ProductDetails;
 import com.cg.market.dto.ProposalDetails;
+import com.cg.market.dto.RequirementDetails;
 import com.cg.market.dto.UpdateEmployeeRequest;
 import com.cg.market.dto.UpdateOfferRequest;
 import com.cg.market.dto.UpdateProductRequest;
 import com.cg.market.dto.UpdateProposalRequest;
+import com.cg.market.dto.UpdateRequirementRequest;
 import com.cg.market.entites.Employee;
 import com.cg.market.entites.Offer;
 import com.cg.market.entites.Product;
 import com.cg.market.entites.Proposal;
+import com.cg.market.entites.Requirement;
 import com.cg.market.service.MarketService;
 import com.cg.market.util.EmployeeUtil;
 import com.cg.market.util.OfferUtil;
 import com.cg.market.util.ProductUtil;
 import com.cg.market.util.ProposalUtil;
+import com.cg.market.util.RequirementUtil;
 
 @RestController
 @RequestMapping("/market")
@@ -54,12 +59,12 @@ public class MarketController {
 	private ProposalUtil propUtil;
 	@Autowired
 	private OfferUtil offUtil;
-
+	@Autowired
+	private RequirementUtil reqUtil;
 	@GetMapping("/by/empid/{empid}")
 	public EmployeeDetails fetchEmployee(@PathVariable("empid") Integer empId) {
 		System.out.println("employee fetch id:" + empId);
 		Employee emp = mService.findById(empId);
-		// new Employee("Pavan", "Analyst","Shivmoga", new User("1234"));
 		EmployeeDetails details = empUtil.toDetails(emp);
 		return details;
 	}
@@ -225,4 +230,40 @@ public class MarketController {
 		List<OfferDetails> response = offUtil.toDetails(offers);
 		return response;
 	}
+	
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("requirement/add")
+	public RequirementDetails add(@RequestBody @Valid CreateRequirementRequest requestData) {
+		System.out.println("Req data: " + requestData);
+		Requirement requ = new Requirement(requestData.getReqId(), requestData.isFulfilled(), requestData.getFulfilledOn(), requestData.getProd());
+		System.out.println("Requirement came: " + requ);
+		requ = mService.register(requ);
+		RequirementDetails details = reqUtil.toDetails(requ);
+		return details;
+	}
+	@ResponseStatus(HttpStatus.OK)
+	@PutMapping("requirement/update")
+	public RequirementDetails updateRequirement(@RequestBody @Valid UpdateRequirementRequest updateData) {
+		System.out.println("update data: " + updateData);
+		Requirement requ = new Requirement(updateData.getReqId(), updateData.isFulfilled(), updateData.getFulfilledOn(), updateData.getProd());
+		System.out.println("Requirement updated:" + requ);
+		requ = mService.register(requ);
+		RequirementDetails details = reqUtil.toDetails(requ);
+		return details;
+	}
+	@GetMapping("requirement/getall")
+	public List<RequirementDetails> fetchAllRequirement() {
+		List<Requirement> requirements = mService.findAllRequirement();
+		List<RequirementDetails> response = reqUtil.toDetails(requirements);
+		return response;
+	}
+	@ResponseStatus(HttpStatus.OK)
+	@DeleteMapping("requirement/delete/{requid}")
+	public RequirementDetails deleteRequirement(@PathVariable("requid") Integer requId) {
+		System.out.println("delete data: " + requId);
+		Requirement requ = mService.deleteById4(requId);
+		RequirementDetails details = reqUtil.toDetails(requ);
+		return details;
+	}
+	
 }

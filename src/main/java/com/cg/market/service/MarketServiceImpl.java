@@ -12,14 +12,17 @@ import com.cg.market.dao.MarketDao;
 import com.cg.market.dao.MarketDaoOffer;
 import com.cg.market.dao.MarketDaoProduct;
 import com.cg.market.dao.MarketDaoProposal;
+import com.cg.market.dao.MarketDaoRequirement;
 import com.cg.market.entites.Employee;
 import com.cg.market.entites.Offer;
 import com.cg.market.entites.Product;
 import com.cg.market.entites.Proposal;
+import com.cg.market.entites.Requirement;
 import com.cg.market.exception.EmployeeNotFoundException;
 import com.cg.market.exception.OfferNotFoundException;
 import com.cg.market.exception.ProductNotFoundException;
 import com.cg.market.exception.ProposalNotFoundException;
+import com.cg.market.exception.RequirementNotFoundException;
 
 @Service
 @Transactional
@@ -32,10 +35,16 @@ public class MarketServiceImpl implements MarketService {
 	private MarketDaoProposal prDao;
 	@Autowired
 	private MarketDaoOffer oDao;
+	@Autowired
+	private MarketDaoRequirement rDao;
 
 	@Override
 	public Employee findById(Integer empId) {
 		Optional<Employee> optional = dao.findById(empId);
+		if(!optional.isPresent()){
+        	System.out.println("***error***");
+            throw new EmployeeNotFoundException("Employee not found for id="+empId);
+        }
 		Employee emp = optional.get();
 		System.out.println("employee:" + emp);
 		return emp;
@@ -58,6 +67,10 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public Product findById1(Integer prodId) {
 		Optional<Product> opt = pDao.findById(prodId);
+		if(!opt.isPresent()){
+        	System.out.println("***error***");
+            throw new ProductNotFoundException("Product not found for id="+prodId);
+        }
 		Product prod = opt.get();
 		System.out.println("Product: " + prod);
 		return prod;
@@ -98,6 +111,10 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public Proposal findById2(Integer propId) {
 		Optional<Proposal> opt = prDao.findById(propId);
+		if(!opt.isPresent()){
+        	System.out.println("***error***");
+            throw new ProposalNotFoundException("proposal not found for id="+propId);
+        }
 		Proposal prop = opt.get();
 		System.out.println("Proposal: " + prop);
 		return prop;
@@ -155,5 +172,32 @@ public class MarketServiceImpl implements MarketService {
 		System.out.println(oDao.getClass().getName());
 		List<Offer> list = oDao.findAll();
 		return list;
+	}
+
+	@Override
+	public Requirement register(Requirement requ) {
+		requ = rDao.save(requ);
+		System.out.println("Returning saved Requirement: " + requ);
+		return requ;
+	
+	}
+
+	@Override
+	public List<Requirement> findAllRequirement() {
+		System.out.println(rDao.getClass().getName());
+		List<Requirement> list = rDao.findAll();
+		return list;
+	}
+
+	@Override
+	public Requirement deleteById4(Integer requId) {
+		Optional<Requirement> opt = rDao.findById(requId);
+		if (!opt.isPresent()) {
+			throw new RequirementNotFoundException("No Requirement Found for Id :" + requId);
+		}
+		Requirement requ = opt.get();
+		rDao.deleteById(requId);
+		System.out.println("Deleting the Requirement:" + requ);
+		return requ;
 	}
 }
