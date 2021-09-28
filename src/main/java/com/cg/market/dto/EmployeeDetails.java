@@ -21,7 +21,6 @@ public class EmployeeDetails {
 
 	public EmployeeDetails() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

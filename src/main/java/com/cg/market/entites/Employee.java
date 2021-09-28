@@ -35,7 +35,6 @@ public class Employee {
 	}
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Employee(int empId, String empName, String deptName, String location, User user) {
 		super();
@@ -48,6 +47,14 @@ public class Employee {
 	
 	public Employee(String empName, String deptName, String location) {
 		super();
+		this.empName = empName;
+		this.deptName = deptName;
+		this.location = location;
+	}
+	
+	public Employee(int empId, String empName, String deptName, String location) {
+		super();
+		this.empId = empId;
 		this.empName = empName;
 		this.deptName = deptName;
 		this.location = location;
