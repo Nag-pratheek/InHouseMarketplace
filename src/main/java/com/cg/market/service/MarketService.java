@@ -2,6 +2,7 @@ package com.cg.market.service;
 
 import java.util.List;
 
+import com.cg.market.dto.UserDetails;
 import com.cg.market.entites.Employee;
 import com.cg.market.entites.Offer;
 import com.cg.market.entites.Product;
@@ -49,5 +50,11 @@ public interface MarketService {
 	Offer update(Offer off);
 
 	Requirement update(Requirement requ);
+
+	Product update(Product prod);
+
+	Employee update(Employee emp);
+
+	String login(UserDetails userDetails);
 
 }

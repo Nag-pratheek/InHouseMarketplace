@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Prod")
+@Table(name = "Product")
 
 public class Product {
 	@Id
@@ -28,11 +28,13 @@ public class Product {
 	@Column(name = "date")
 	private LocalDate date;
 	@ManyToOne
-	@JoinColumn(name = "emp_id")
+	@JoinColumn(name = "empid")
 	private Employee employee;
+
 	public Product() {
 		super();
 	}
+
 	public Product(Integer prodId, String title, String description, String category, double price, LocalDate date,
 			Employee employee) {
 		super();
@@ -44,6 +46,7 @@ public class Product {
 		this.date = date;
 		this.employee = employee;
 	}
+
 	public Product(String title, String description, String category, double price, LocalDate date, Employee employee) {
 		super();
 		this.title = title;
@@ -53,7 +56,7 @@ public class Product {
 		this.date = date;
 		this.employee = employee;
 	}
-	
+
 	public Product(String title, String description, String category, double price, LocalDate date) {
 		super();
 		this.title = title;
@@ -62,8 +65,7 @@ public class Product {
 		this.price = price;
 		this.date = date;
 	}
-	
-	
+
 	public Product(Integer prodId, String title, String description, String category, double price, LocalDate date) {
 		super();
 		this.prodId = prodId;
@@ -73,50 +75,73 @@ public class Product {
 		this.price = price;
 		this.date = date;
 	}
+
+	public Product(String title, String description, String category, double price) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [prodId=" + prodId + ", title=" + title + ", description=" + description + ", category="
 				+ category + ", price=" + price + ", date=" + date + ", employee=" + employee + "]";
 	}
+
 	public Integer getProdId() {
 		return prodId;
 	}
+
 	public void setProdId(Integer prodId) {
 		this.prodId = prodId;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getCategory() {
 		return category;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
 	public Employee getEmployee() {
 		return employee;
 	}
+
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}

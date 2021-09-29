@@ -11,19 +11,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Requirement")
+@Table(name = "Requirement")
 public class Requirement {
 	@Id
 	@GeneratedValue
 	private Integer reqId;
-	@Column(name= "isFulfilled")
+	@Column(name = "isFulfilled")
 	private boolean isFulfilled;
-	@Column(name= "fulfilledOn")
+	@Column(name = "fulfilledOn")
 	private LocalDate fulfilledOn;
 	@OneToOne
-	@JoinColumn(name="prodId")
+	@JoinColumn(name = "prodId")
 	private Product prod;
-	
+
 	public Requirement() {
 		super();
 	}
@@ -74,7 +74,4 @@ public class Requirement {
 		this.prod = prod;
 	}
 
-	
-
-	
 }

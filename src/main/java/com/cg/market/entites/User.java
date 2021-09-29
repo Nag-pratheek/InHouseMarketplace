@@ -6,21 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user_Details")
+@Table(name = "userDetails")
 
 public class User {
-@Id
-	@Column(name="userid")
+	@Id
+	@Column(name = "userid")
 	private Integer userId;
-	@Column(name="password")
+	@Column(name = "password")
 	private String password;
-	
-	
+
 	public User(String password) {
 		super();
 		this.password = password;
 	}
-
 
 	public User(Integer userId, String password) {
 		super();
@@ -28,33 +26,25 @@ public class User {
 		this.password = password;
 	}
 
-
 	public User() {
 		super();
 
 	}
 
-
 	public Integer getUserId() {
 		return userId;
 	}
-
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
 }
-	
-	

@@ -4,7 +4,7 @@ public class ProposalNotFoundException extends RuntimeException {
 
 	public ProposalNotFoundException(String msg) {
 		super(msg);
-		
+
 	}
 
 }

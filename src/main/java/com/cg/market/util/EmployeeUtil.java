@@ -9,8 +9,7 @@ import com.cg.market.entites.Employee;
 public class EmployeeUtil {
 
 	public EmployeeDetails toDetails(Employee emp) {
-	
-		
+
 		return new EmployeeDetails(emp.getEmpId(), emp.getEmpName(), emp.getDeptName(), emp.getLocation());
 	}
 

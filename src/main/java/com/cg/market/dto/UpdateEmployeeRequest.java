@@ -5,13 +5,16 @@ import javax.validation.constraints.Size;
 
 public class UpdateEmployeeRequest {
 	private Integer empId;
-	@NotBlank @Size(min =2 , max = 20)
+	@NotBlank
+	@Size(min = 2, max = 20)
 	private String empName;
-	@NotBlank @Size(min =2 , max = 20)
+	@NotBlank
+	@Size(min = 2, max = 20)
 	private String deptName;
-	@NotBlank @Size(min =2 , max = 20)
+	@NotBlank
+	@Size(min = 2, max = 20)
 	private String location;
-	
+
 	public UpdateEmployeeRequest(@NotBlank @Size(min = 2, max = 20) String empName,
 			@NotBlank @Size(min = 2, max = 20) String deptName, @NotBlank @Size(min = 2, max = 20) String location) {
 		super();

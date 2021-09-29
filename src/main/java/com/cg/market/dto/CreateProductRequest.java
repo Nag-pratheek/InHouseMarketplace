@@ -14,10 +14,11 @@ public class CreateProductRequest {
 	private double price;
 	private LocalDate date;
 	private Employee emp;
+
 	public CreateProductRequest() {
 		super();
 	}
-	
+
 	public CreateProductRequest(@NotBlank @Size(min = 2, max = 20) String title,
 			@NotBlank @Size(min = 2, max = 20) String decription, @NotBlank @Size(min = 2, max = 20) String category,
 			double price, LocalDate date) {
@@ -28,7 +29,7 @@ public class CreateProductRequest {
 		this.price = price;
 		this.date = date;
 	}
-	
+
 	public CreateProductRequest(String title, String decription, String category, double price, LocalDate date,
 			Employee emp) {
 		super();
@@ -49,30 +50,39 @@ public class CreateProductRequest {
 	public String getDecription() {
 		return decription;
 	}
+
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
+
 	public String getCategory() {
 		return category;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -84,8 +94,5 @@ public class CreateProductRequest {
 	public void setEmp(Employee emp) {
 		this.emp = emp;
 	}
-	
-	
-	
 
 }

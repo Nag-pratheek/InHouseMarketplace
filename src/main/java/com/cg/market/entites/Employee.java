@@ -9,31 +9,32 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Empl")
+@Table(name = "Employee")
 
 public class Employee {
 	@Id
 	@GeneratedValue
 	private Integer empId;
-	@Column(name="empname")
+	@Column(name = "empname")
 	private String empName;
-	@Column(name="deptname")
+	@Column(name = "deptname")
 	private String deptName;
-	@Column(name="location")
+	@Column(name = "location")
 	private String location;
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userid")
 	private User user;
+
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
 				+ ", user=" + user + "]";
 	}
+
 	public Employee() {
 		super();
 	}
-	
-	
+
 	public Employee(Integer empId, String empName, String deptName, String location, User user) {
 		super();
 		this.empId = empId;
@@ -42,14 +43,14 @@ public class Employee {
 		this.location = location;
 		this.user = user;
 	}
+
 	public Employee(String empName, String deptName, String location) {
 		super();
 		this.empName = empName;
 		this.deptName = deptName;
 		this.location = location;
 	}
-	
-	
+
 	public Employee(Integer empId, String empName, String deptName, String location) {
 		super();
 		this.empId = empId;
@@ -57,37 +58,47 @@ public class Employee {
 		this.deptName = deptName;
 		this.location = location;
 	}
-	
+
 	public Integer getEmpId() {
 		return empId;
 	}
+
 	public void setEmpId(Integer empId) {
 		this.empId = empId;
 	}
+
 	public String getEmpName() {
 		return empName;
 	}
+
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
+
 	public String getDeptName() {
 		return deptName;
 	}
+
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Employee(String empName, String deptName, String location, User user) {
 		super();
 		this.empName = empName;
@@ -95,8 +106,5 @@ public class Employee {
 		this.location = location;
 		this.user = user;
 	}
-	
-	
+
 }
-	
-	

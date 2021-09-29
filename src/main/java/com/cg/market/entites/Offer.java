@@ -21,12 +21,13 @@ public class Offer {
 	@Column(name = "availableupto")
 	private LocalDate availableUpto;
 	@OneToOne
-	@JoinColumn(name= "ProductId")
+	@JoinColumn(name = "ProductId")
 	private Product prod;
+
 	public Offer() {
 		super();
 	}
-	
+
 	public Offer(Integer offerId, boolean isAvailable, LocalDate availableUpto, Product prod) {
 		super();
 		this.offerId = offerId;

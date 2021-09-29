@@ -12,18 +12,18 @@ import com.cg.market.entites.Requirement;
 public class RequirementUtil {
 
 	public RequirementDetails toDetails(Requirement requ) {
-		
-		return new RequirementDetails(requ.getReqId(), requ.isFulfilled(), requ.getFulfilledOn(),requ.getProd());
+
+		return new RequirementDetails(requ.getReqId(), requ.isFulfilled(), requ.getFulfilledOn(), requ.getProd());
 	}
 
 	public List<RequirementDetails> toDetails(List<Requirement> requirements) {
-			List<RequirementDetails> detailList = new ArrayList<>();
-	        for (Requirement requirement : requirements) {
-	            RequirementDetails details = toDetails(requirement);
-	            System.out.println(details);
-	            detailList.add(details);
-	        }
-	        return detailList;
+		List<RequirementDetails> detailList = new ArrayList<>();
+		for (Requirement requirement : requirements) {
+			RequirementDetails details = toDetails(requirement);
+			System.out.println(details);
+			detailList.add(details);
+		}
+		return detailList;
 	}
 
 }

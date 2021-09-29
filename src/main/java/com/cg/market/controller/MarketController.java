@@ -1,7 +1,10 @@
 package com.cg.market.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,7 @@ import com.cg.market.dto.UpdateOfferRequest;
 import com.cg.market.dto.UpdateProductRequest;
 import com.cg.market.dto.UpdateProposalRequest;
 import com.cg.market.dto.UpdateRequirementRequest;
+import com.cg.market.dto.UserDetails;
 import com.cg.market.entites.Employee;
 import com.cg.market.entites.Offer;
 import com.cg.market.entites.Product;
@@ -61,6 +65,7 @@ public class MarketController {
 	private OfferUtil offUtil;
 	@Autowired
 	private RequirementUtil reqUtil;
+
 	@GetMapping("/by/empid/{empid}")
 	public EmployeeDetails fetchEmployee(@PathVariable("empid") Integer empId) {
 		System.out.println("employee fetch id:" + empId);
@@ -71,7 +76,7 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("employee/add")
-	public EmployeeDetails add(@RequestBody @Valid CreateEmployeeRequest requestData) {
+	public EmployeeDetails addEmployee(@RequestBody @Valid CreateEmployeeRequest requestData) {
 		System.out.println("req data: " + requestData);
 		Employee emp = new Employee(requestData.getEmpName(), requestData.getDeptName(), requestData.getLocation());
 		System.out.println("Emoloyee came: " + emp);
@@ -87,7 +92,7 @@ public class MarketController {
 		Employee emp = new Employee(updateData.getEmpId(), updateData.getEmpName(), updateData.getDeptName(),
 				updateData.getLocation());
 		System.out.println("Employee updated:" + emp);
-		emp = mService.register(emp);
+		emp = mService.update(emp);
 		EmployeeDetails details = empUtil.toDetails(emp);
 		return details;
 	}
@@ -128,17 +133,18 @@ public class MarketController {
 		Product prod = new Product(updateData.getProdId(), updateData.getTitle(), updateData.getDescription(),
 				updateData.getCategory(), updateData.getPrice(), updateData.getDate(), updateData.getEmp());
 		System.out.println("Product updated:" + prod);
-		prod = mService.register(prod);
+		prod = mService.update(prod);
 		ProductDetails details = prodUtil.toDetails(prod);
 		return details;
 	}
 
-		@GetMapping("product/getall")
-		public List<ProductDetails> fetchAllProduct() {
-			List<Product> products = mService.findAllProduct();
-			List<ProductDetails> response = prodUtil.toDetails(products);
-			return response;
-		}
+	@GetMapping("product/getall")
+	public List<ProductDetails> fetchAllProduct() {
+		List<Product> products = mService.findAllProduct();
+		List<ProductDetails> response = prodUtil.toDetails(products);
+		return response;
+	}
+
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("product/delete/{prodid}")
 	public ProductDetails delete(@PathVariable("prodid") Integer prodId) {
@@ -189,33 +195,37 @@ public class MarketController {
 		return details;
 	}
 
-		@GetMapping("proposal/getall")
-		public List<ProposalDetails> fetchAll() {
-			List<Proposal> proposals = mService.findAll();
-			List<ProposalDetails> response = propUtil.toDetails(proposals);
-			return response;
-		}
+	@GetMapping("proposal/getall")
+	public List<ProposalDetails> fetchAll() {
+		List<Proposal> proposals = mService.findAll();
+		List<ProposalDetails> response = propUtil.toDetails(proposals);
+		return response;
+	}
+
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("offer/add")
 	public OfferDetails add(@RequestBody @Valid CreateOfferRequest requestData) {
 		System.out.println("Req data: " + requestData);
-		Offer off = new Offer(requestData.getOfferId(), requestData.isAvailable(), requestData.getAvailableUpto(),requestData.getProd());
+		Offer off = new Offer(requestData.getOfferId(), requestData.isAvailable(), requestData.getAvailableUpto(),
+				requestData.getProd());
 		System.out.println("Offer came: " + off);
 		off = mService.register(off);
 		OfferDetails details = offUtil.toDetails(off);
 		return details;
 	}
+
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("offer/update")
 	public OfferDetails updateOffer(@RequestBody @Valid UpdateOfferRequest updateData) {
 		System.out.println("update data: " + updateData);
-		Offer off = new Offer(updateData.getOfferId(),updateData.isAvailable(),updateData.getAvailableUpto() , updateData.getProd());
+		Offer off = new Offer(updateData.getOfferId(), updateData.isAvailable(), updateData.getAvailableUpto(),
+				updateData.getProd());
 		System.out.println("Offer updated:" + off);
 		off = mService.update(off);
 		OfferDetails details = offUtil.toDetails(off);
 		return details;
 	}
-	
+
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("offer/delete/{offid}")
 	public OfferDetails deleteOffer(@PathVariable("offid") Integer offId) {
@@ -224,39 +234,45 @@ public class MarketController {
 		OfferDetails details = offUtil.toDetails(off);
 		return details;
 	}
+
 	@GetMapping("offer/getall")
 	public List<OfferDetails> fetchAllOffer() {
 		List<Offer> offers = mService.findAllOffer();
 		List<OfferDetails> response = offUtil.toDetails(offers);
 		return response;
 	}
-	
+
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("requirement/add")
 	public RequirementDetails add(@RequestBody @Valid CreateRequirementRequest requestData) {
 		System.out.println("Req data: " + requestData);
-		Requirement requ = new Requirement(requestData.getReqId(), requestData.isFulfilled(), requestData.getFulfilledOn(), requestData.getProd());
+		Requirement requ = new Requirement(requestData.getReqId(), requestData.isFulfilled(),
+				requestData.getFulfilledOn(), requestData.getProd());
 		System.out.println("Requirement came: " + requ);
 		requ = mService.register(requ);
 		RequirementDetails details = reqUtil.toDetails(requ);
 		return details;
 	}
+
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("requirement/update")
 	public RequirementDetails updateRequirement(@RequestBody @Valid UpdateRequirementRequest updateData) {
 		System.out.println("update data: " + updateData);
-		Requirement requ = new Requirement(updateData.getReqId(), updateData.isFulfilled(), updateData.getFulfilledOn(), updateData.getProd());
+		Requirement requ = new Requirement(updateData.getReqId(), updateData.isFulfilled(), updateData.getFulfilledOn(),
+				updateData.getProd());
 		System.out.println("Requirement updated:" + requ);
 		requ = mService.update(requ);
 		RequirementDetails details = reqUtil.toDetails(requ);
 		return details;
 	}
+
 	@GetMapping("requirement/getall")
 	public List<RequirementDetails> fetchAllRequirement() {
 		List<Requirement> requirements = mService.findAllRequirement();
 		List<RequirementDetails> response = reqUtil.toDetails(requirements);
 		return response;
 	}
+
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("requirement/delete/{requid}")
 	public RequirementDetails deleteRequirement(@PathVariable("requid") Integer requId) {
@@ -265,5 +281,35 @@ public class MarketController {
 		RequirementDetails details = reqUtil.toDetails(requ);
 		return details;
 	}
-	
+
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@PostMapping("/login")
+	public String login(@RequestBody UserDetails userDetails, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(session);
+		String role = mService.login(userDetails);
+		session.setAttribute("user", userDetails.getUsername());
+		session.setAttribute("role", userDetails.getUserRole());
+		return "You have successfully logged in as : " + role;
+	}
+
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@PostMapping("/logout")
+	public String logout(@RequestBody UserDetails userDetails, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(session);
+		Enumeration<String> attrNames = session.getAttributeNames();
+		while (attrNames.hasMoreElements()) {
+			String name = (String) attrNames.nextElement();
+			System.out.println(name);
+			String uName = (String) session.getAttribute(name);
+			System.out.println(uName);
+			if (uName.equals(userDetails.getUsername())) {
+				System.out.println("invalidating session..." + uName);
+				session.invalidate();
+			}
+		}
+		return "You have successfully logged out " + userDetails.getUsername();
+	}
+
 }
