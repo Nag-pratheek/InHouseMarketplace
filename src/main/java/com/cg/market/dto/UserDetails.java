@@ -2,8 +2,10 @@ package com.cg.market.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "logindetails")
 public class UserDetails {
 	@Id
 	private String username;

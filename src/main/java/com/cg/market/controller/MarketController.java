@@ -42,6 +42,7 @@ import com.cg.market.entites.Product;
 import com.cg.market.entites.Proposal;
 import com.cg.market.entites.Requirement;
 import com.cg.market.service.MarketService;
+import com.cg.market.service.UserRegister;
 import com.cg.market.util.EmployeeUtil;
 import com.cg.market.util.OfferUtil;
 import com.cg.market.util.ProductUtil;
@@ -65,7 +66,9 @@ public class MarketController {
 	private OfferUtil offUtil;
 	@Autowired
 	private RequirementUtil reqUtil;
-
+	@Autowired
+	private UserRegister eRegister;
+	
 	@GetMapping("/by/empid/{empid}")
 	public EmployeeDetails fetchEmployee(@PathVariable("empid") Integer empId) {
 		System.out.println("employee fetch id:" + empId);
@@ -290,6 +293,8 @@ public class MarketController {
 		String role = mService.login(userDetails);
 		session.setAttribute("user", userDetails.getUsername());
 		session.setAttribute("role", userDetails.getUserRole());
+//		Object uName = session.getAttribute("user");
+//		String name = (String) uName;
 		return "You have successfully logged in as : " + role;
 	}
 
@@ -312,4 +317,12 @@ public class MarketController {
 		return "You have successfully logged out " + userDetails.getUsername();
 	}
 
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@PostMapping("/login/register")
+	public String register(@RequestBody UserDetails userDetails, HttpServletRequest request) {
+		UserDetails uDetails = new UserDetails(userDetails.getUsername(), userDetails.getPassword(), "User");
+		uDetails = eRegister.register(uDetails);
+		return "Registration successful with Username : " + uDetails.getUsername() + " Role-> "
+				+ uDetails.getUserRole();
+	}
 }

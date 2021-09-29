@@ -62,8 +62,9 @@ public class MarketServiceImpl implements MarketService {
 
 	@Override
 	public Employee register(Employee emp) {
-		boolean exists = emp.getEmpId() != null && dao.existsById(emp.getEmpId());
-		if (exists) {
+//		boolean exists = emp.getEmpName() != null &&
+		List<Employee> empList=dao.existsByIdempName(emp.getEmpName());
+		if (empList.size()>1) {
 			throw new EmployeeAlreadyExistsException("Employee already exists for id=" + emp.getEmpId());
 		}
 		emp = dao.save(emp);
