@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,27 +19,15 @@ public class Employee {
 	private String deptName;
 	@Column(name = "location")
 	private String location;
-	@OneToOne
-	@JoinColumn(name = "userid")
-	private User user;
-
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
-				+ ", user=" + user + "]";
-	}
 
 	public Employee() {
 		super();
 	}
 
-	public Employee(Integer empId, String empName, String deptName, String location, User user) {
-		super();
-		this.empId = empId;
-		this.empName = empName;
-		this.deptName = deptName;
-		this.location = location;
-		this.user = user;
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
+				+ "]";
 	}
 
 	public Employee(String empName, String deptName, String location) {
@@ -89,22 +75,6 @@ public class Employee {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Employee(String empName, String deptName, String location, User user) {
-		super();
-		this.empName = empName;
-		this.deptName = deptName;
-		this.location = location;
-		this.user = user;
 	}
 
 }

@@ -6,5 +6,4 @@ public interface UserRegister {
 
 	UserDetails register(UserDetails uDetails);
 
-	
 }

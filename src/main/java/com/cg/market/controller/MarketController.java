@@ -41,6 +41,7 @@ import com.cg.market.entites.Offer;
 import com.cg.market.entites.Product;
 import com.cg.market.entites.Proposal;
 import com.cg.market.entites.Requirement;
+import com.cg.market.exception.NotLoggedInException;
 import com.cg.market.service.MarketService;
 import com.cg.market.service.UserRegister;
 import com.cg.market.util.EmployeeUtil;
@@ -68,9 +69,14 @@ public class MarketController {
 	private RequirementUtil reqUtil;
 	@Autowired
 	private UserRegister eRegister;
-	
+
 	@GetMapping("/by/empid/{empid}")
-	public EmployeeDetails fetchEmployee(@PathVariable("empid") Integer empId) {
+	public EmployeeDetails fetchEmployee(@PathVariable("empid") Integer empId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("employee fetch id:" + empId);
 		Employee emp = mService.findById(empId);
 		EmployeeDetails details = empUtil.toDetails(emp);
@@ -79,7 +85,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("employee/add")
-	public EmployeeDetails addEmployee(@RequestBody @Valid CreateEmployeeRequest requestData) {
+	public EmployeeDetails addEmployee(@RequestBody @Valid CreateEmployeeRequest requestData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("req data: " + requestData);
 		Employee emp = new Employee(requestData.getEmpName(), requestData.getDeptName(), requestData.getLocation());
 		System.out.println("Emoloyee came: " + emp);
@@ -90,7 +102,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("employee/update")
-	public EmployeeDetails update(@RequestBody @Valid UpdateEmployeeRequest updateData) {
+	public EmployeeDetails updateEmployee(@RequestBody @Valid UpdateEmployeeRequest updateData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("update data: " + updateData);
 		Employee emp = new Employee(updateData.getEmpId(), updateData.getEmpName(), updateData.getDeptName(),
 				updateData.getLocation());
@@ -102,7 +120,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("employee/delete/{empid}")
-	public EmployeeDetails deleteEmployee(@PathVariable("empid") Integer empId) {
+	public EmployeeDetails deleteEmployee(@PathVariable("empid") Integer empId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("delete data: " + empId);
 		Employee emp = mService.deleteById1(empId);
 		EmployeeDetails details = empUtil.toDetails(emp);
@@ -111,7 +134,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("product/add")
-	public ProductDetails add(@RequestBody @Valid CreateProductRequest requestData) {
+	public ProductDetails addProduct(@RequestBody @Valid CreateProductRequest requestData, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("Req data: " + requestData);
 		Product prod = new Product(requestData.getTitle(), requestData.getDecription(), requestData.getCategory(),
 				requestData.getPrice(), requestData.getDate(), requestData.getEmp());
@@ -122,7 +150,12 @@ public class MarketController {
 	}
 
 	@GetMapping("/by/prodid/{prodid}")
-	public ProductDetails fetchProduct(@PathVariable("prodid") Integer prodId) {
+	public ProductDetails fetchProduct(@PathVariable("prodid") Integer prodId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("Product fetch id:" + prodId);
 		Product prod = mService.findById1(prodId);
 		ProductDetails details = prodUtil.toDetails(prod);
@@ -131,7 +164,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("product/update")
-	public ProductDetails update(@RequestBody @Valid UpdateProductRequest updateData) {
+	public ProductDetails updateProduct(@RequestBody @Valid UpdateProductRequest updateData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("update data: " + updateData);
 		Product prod = new Product(updateData.getProdId(), updateData.getTitle(), updateData.getDescription(),
 				updateData.getCategory(), updateData.getPrice(), updateData.getDate(), updateData.getEmp());
@@ -142,7 +181,12 @@ public class MarketController {
 	}
 
 	@GetMapping("product/getall")
-	public List<ProductDetails> fetchAllProduct() {
+	public List<ProductDetails> fetchAllProduct(HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		List<Product> products = mService.findAllProduct();
 		List<ProductDetails> response = prodUtil.toDetails(products);
 		return response;
@@ -150,7 +194,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("product/delete/{prodid}")
-	public ProductDetails delete(@PathVariable("prodid") Integer prodId) {
+	public ProductDetails deleteProduct(@PathVariable("prodid") Integer prodId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("delete data: " + prodId);
 		Product prod = mService.deleteById(prodId);
 		ProductDetails details = prodUtil.toDetails(prod);
@@ -159,7 +208,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("proposal/add")
-	public ProposalDetails add(@RequestBody @Valid CreateProposalRequest requestData) {
+	public ProposalDetails addProposal(@RequestBody @Valid CreateProposalRequest requestData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("Req data: " + requestData);
 		Proposal prop = new Proposal(requestData.getPropId(), requestData.getProposal(), requestData.getAmount(),
 				requestData.getProposalDate(), requestData.isAccepted(), requestData.getEmp(), requestData.getProd());
@@ -170,7 +225,12 @@ public class MarketController {
 	}
 
 	@GetMapping("/by/propid/{propid}")
-	public ProposalDetails fetchProposal(@PathVariable("propid") Integer propId) {
+	public ProposalDetails fetchProposal(@PathVariable("propid") Integer propId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("Proposal fetch id:" + propId);
 		Proposal prop = mService.findById2(propId);
 		ProposalDetails details = propUtil.toDetails(prop);
@@ -179,7 +239,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("proposal/delete/{propid}")
-	public ProposalDetails deleteProposal(@PathVariable("propid") Integer propId) {
+	public ProposalDetails deleteProposal(@PathVariable("propid") Integer propId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("delete data: " + propId);
 		Proposal prop = mService.deleteById2(propId);
 		ProposalDetails details = propUtil.toDetails(prop);
@@ -188,7 +253,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("proposal/update")
-	public ProposalDetails update(@RequestBody @Valid UpdateProposalRequest updateData) {
+	public ProposalDetails updateProposal(@RequestBody @Valid UpdateProposalRequest updateData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("update data: " + updateData);
 		Proposal prop = new Proposal(updateData.getPropId(), updateData.getProposal(), updateData.getAmount(),
 				updateData.getProposalDate(), updateData.isAccepted(), updateData.getEmp(), updateData.getProd());
@@ -199,7 +270,12 @@ public class MarketController {
 	}
 
 	@GetMapping("proposal/getall")
-	public List<ProposalDetails> fetchAll() {
+	public List<ProposalDetails> fetchAllProposal(HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		List<Proposal> proposals = mService.findAll();
 		List<ProposalDetails> response = propUtil.toDetails(proposals);
 		return response;
@@ -207,7 +283,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("offer/add")
-	public OfferDetails add(@RequestBody @Valid CreateOfferRequest requestData) {
+	public OfferDetails addOffer(@RequestBody @Valid CreateOfferRequest requestData, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("Req data: " + requestData);
 		Offer off = new Offer(requestData.getOfferId(), requestData.isAvailable(), requestData.getAvailableUpto(),
 				requestData.getProd());
@@ -219,7 +300,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("offer/update")
-	public OfferDetails updateOffer(@RequestBody @Valid UpdateOfferRequest updateData) {
+	public OfferDetails updateOffer(@RequestBody @Valid UpdateOfferRequest updateData, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("update data: " + updateData);
 		Offer off = new Offer(updateData.getOfferId(), updateData.isAvailable(), updateData.getAvailableUpto(),
 				updateData.getProd());
@@ -231,7 +317,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("offer/delete/{offid}")
-	public OfferDetails deleteOffer(@PathVariable("offid") Integer offId) {
+	public OfferDetails deleteOffer(@PathVariable("offid") Integer offId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("delete data: " + offId);
 		Offer off = mService.deleteById3(offId);
 		OfferDetails details = offUtil.toDetails(off);
@@ -239,7 +330,12 @@ public class MarketController {
 	}
 
 	@GetMapping("offer/getall")
-	public List<OfferDetails> fetchAllOffer() {
+	public List<OfferDetails> fetchAllOffer(HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		List<Offer> offers = mService.findAllOffer();
 		List<OfferDetails> response = offUtil.toDetails(offers);
 		return response;
@@ -247,7 +343,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("requirement/add")
-	public RequirementDetails add(@RequestBody @Valid CreateRequirementRequest requestData) {
+	public RequirementDetails addRequirement(@RequestBody @Valid CreateRequirementRequest requestData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("Req data: " + requestData);
 		Requirement requ = new Requirement(requestData.getReqId(), requestData.isFulfilled(),
 				requestData.getFulfilledOn(), requestData.getProd());
@@ -259,7 +361,13 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping("requirement/update")
-	public RequirementDetails updateRequirement(@RequestBody @Valid UpdateRequirementRequest updateData) {
+	public RequirementDetails updateRequirement(@RequestBody @Valid UpdateRequirementRequest updateData,
+			HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("update data: " + updateData);
 		Requirement requ = new Requirement(updateData.getReqId(), updateData.isFulfilled(), updateData.getFulfilledOn(),
 				updateData.getProd());
@@ -270,7 +378,12 @@ public class MarketController {
 	}
 
 	@GetMapping("requirement/getall")
-	public List<RequirementDetails> fetchAllRequirement() {
+	public List<RequirementDetails> fetchAllRequirement(HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		List<Requirement> requirements = mService.findAllRequirement();
 		List<RequirementDetails> response = reqUtil.toDetails(requirements);
 		return response;
@@ -278,7 +391,12 @@ public class MarketController {
 
 	@ResponseStatus(HttpStatus.OK)
 	@DeleteMapping("requirement/delete/{requid}")
-	public RequirementDetails deleteRequirement(@PathVariable("requid") Integer requId) {
+	public RequirementDetails deleteRequirement(@PathVariable("requid") Integer requId, HttpServletRequest request) {
+		String userName = (String) request.getSession().getAttribute("user");
+		System.out.println(userName);
+		if (userName == null) {
+			throw new NotLoggedInException("You have not logged in");
+		}
 		System.out.println("delete data: " + requId);
 		Requirement requ = mService.deleteById4(requId);
 		RequirementDetails details = reqUtil.toDetails(requ);
@@ -293,8 +411,6 @@ public class MarketController {
 		String role = mService.login(userDetails);
 		session.setAttribute("user", userDetails.getUsername());
 		session.setAttribute("role", userDetails.getUserRole());
-//		Object uName = session.getAttribute("user");
-//		String name = (String) uName;
 		return "You have successfully logged in as : " + role;
 	}
 
